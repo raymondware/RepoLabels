@@ -5,6 +5,7 @@ import React from 'react'
 import PublicPage from './pages/public'
 import ReposPage from './pages/repos'
 import MessagePage from './pages/message'
+import RepoDetail from './pages/repo'
 import Layout from './layout'
 import xhr from 'xhr'
 
@@ -31,6 +32,7 @@ export default Router.extend({
   routes: {
     '': 'public',
     'repos': auth('repos'),
+    'repos/:name/:repoName': auth('repoDetail', 'super-user'),
     'login': 'login',
     'logout': 'logout',
     'auth/callback?code=:code': 'authCallback',
@@ -43,6 +45,12 @@ export default Router.extend({
 
   repos () {
     this.renderPage(ReposPage, {repos: app.me.repos})
+  },
+  
+  repoDetail (name, repoName) {
+    const repo = app.me.repos.getByFullName(name + '/' + repoName)
+    repo.labels.fetch()
+    this.renderPage(RepoDetail, {repo, labels: repo.labels})
   },
 
   login () {
