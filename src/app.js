@@ -5,7 +5,8 @@ import Me from './models/me'
 
 app.extend({
   init () {
-	this.me = new Me()
+    this.me = new Me()
+    this.me.fetchAll()
     this.router = new Router()
     this.router.history.start()
   }

@@ -21,7 +21,7 @@ const auth = function (name) {
 export default Router.extend({
   renderPage (Page, opts = {}) {
     const Main = (
-      <Layout>
+      <Layout me={app.me}>
         <Page {...opts}/>
       </Layout>
     )
@@ -42,7 +42,7 @@ export default Router.extend({
   },
 
   repos () {
-    this.renderPage(ReposPage)
+    this.renderPage(ReposPage, {repos: app.me.repos})
   },
 
   login () {
