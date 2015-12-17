@@ -1,1 +1,1 @@
-# lablr
+# Github repo labeler
