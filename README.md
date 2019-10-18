@@ -1,1 +1,1 @@
-# Github repo labeler
+# RepoLabels
